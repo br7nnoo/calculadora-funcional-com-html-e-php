@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html lang="pt-br"></html>
+    <head>
+        <title>Calculadora</title>
+        <meta charset="UTF-8">
+
+        <?php
+        $operacao = isset($_GET['operacao']) ? $_GET['operacao'] : '';
+        $numero1 = isset($_GET['numero1']) ? $_GET['numero1'] : 0;
+        $numero2 = isset($_GET['numero2']) ? $_GET['numero2'] : 0;
+        $resultado = "";
+        if($operacao == "soma"){
+            $resultado = $numero1 + $numero2;
+        }else if($operacao == "subtracao"){
+            $resultado = $numero1 - $numero2;
+        }else if($operacao == "multiplicacao"){
+            $resultado = $numero1 * $numero2;
+        }else if($operacao == "divisao"){
+            if($numero2 == 0){
+                $resultado = "ERRO";
+            }else{
+                $resultado = $numero1 / $numero2;
+            }if($operacao != ''){
+                echo "Resultado: $resultado";
+            }
+        }
+        ?>
+        <style>
+            .titulo {
+                color: rgb(110, 110, 163);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 32px;
+                font-weight: 700;
+                letter-spacing: -0.7px;
+                margin-top: 20px;
+            }
+            body {
+                background color: #e2d7d7;
+                background-size: cover;
+            } .pai {
+                display:grid;
+                place-items: center;
+                height: 22vh;
+                margin: 0;
+                padding:0%
+            } .subtitulo {
+                color: aquamarine;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <h1 class="titulo">Calculadora do Brunno</h1>
+        <h2 class="subtitulo">Éssa é uma Calculadora simples, espero que goste e tenha uma boa experiência</h2>
+        <br><br><br>
+        <div class="pai">
+            <form action="trabalho.php" method="GET">
+            <input type="number" id="valor1" name="numero1" placeholder="Digite um número">
+            
+            <input type="number" id="valor2" name="numero2" placeholder="Digite um número">
+            <br>
+            <select name="operacao" id="operacao" >
+                <option value="soma">+</option>
+                <option value="subtracao">-</option>
+                <option value="multiplicacao">*</option>
+                <option value="divisao">/</option>
+            </select>
+            <button type="submit" id="Calcular">Calcular</button>
+            </form>
+            <p>Resultado: <span id="resultado"><?php echo "$resultado"; ?></span></p>
+        </div>
+
+    </body>
